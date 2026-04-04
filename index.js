@@ -5,7 +5,7 @@ async function fetchData() {
     const response = await fetch(API_URL);
     const data = await response.json();
 
-    console.log(data); // 
+    console.log(data); 
 
     displayData(data);
   } catch (error) {
@@ -13,7 +13,6 @@ async function fetchData() {
   }
 }
 
-// DISPLAY FUNCTION //
 function displayData(movies) {
   const container = document.getElementById("movies");
   container.innerHTML = "";
@@ -22,8 +21,7 @@ function displayData(movies) {
     const div = document.createElement("div");
     div.classList.add("card");
 
-    
-    div.innerHTML = `
+     div.innerHTML = `
       <h3>${movie.title}</h3>
       <p>${movie.description}</p>
     `;
@@ -44,7 +42,6 @@ const moviesData = [
 const moviesContainer = document.getElementById('movies');
 const filterSelect = document.getElementById('filter');
 
-// Function to display movies
 function displayMovies(movies) {
   moviesContainer.innerHTML = movies.map(movie => `
     <div class="movie">
@@ -57,10 +54,8 @@ function displayMovies(movies) {
   `).join('');
 }
 
-// Initial display
 displayMovies(moviesData);
 
-// Function to sort movies
 function filterMovies(event) {
   const value = event.target.value;
   let sortedMovies = [...moviesData];
@@ -74,5 +69,4 @@ function filterMovies(event) {
   displayMovies(sortedMovies);
 }
 
-// Listen for select change
 filterSelect.addEventListener('change', filterMovies);
