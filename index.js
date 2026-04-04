@@ -1,4 +1,4 @@
-const API_URL = "https://www.omdbapi.com/?apikey=b7ae34c&s=star"; 
+const API_URL = "https://www.omdbapi.com/?apikey=b7ae34c&s=star";
 
 async function fetchData() {
   try {
