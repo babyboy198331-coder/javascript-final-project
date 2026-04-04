@@ -1,4 +1,38 @@
+const API_URL = "https://www.omdbapi.com/?apikey=b7ae34c&s=star"; 
 
+async function fetchData() {
+  try {
+    const response = await fetch(API_URL);
+    const data = await response.json();
+
+    console.log(data); // 
+
+    displayData(data);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+// DISPLAY FUNCTION //
+function displayData(movies) {
+  const container = document.getElementById("movies");
+  container.innerHTML = "";
+
+  items.forEach(movies => {
+    const div = document.createElement("div");
+    div.classList.add("card");
+
+    
+    div.innerHTML = `
+      <h3>${movie.title}</h3>
+      <p>${movie.description}</p>
+    `;
+
+    container.appendChild(div);
+  });
+}
+
+fetchData();
 const moviesData = [
   { title: "Episode I - The Phantom Menace", price: 19.95, img: "./assets/episode 1.jpg" },
   { title: "Episode II - Attack of the Clones", price: 39.95, img: "./assets/episode 2.jpg" },
