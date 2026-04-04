@@ -68,20 +68,20 @@ button:active {
 }
 
 .btn {
-  background-color: #7342d6;
-  color: white;
+  background-color: goldenrod;
+  color: #000000;
   padding: 12px 24px;
   font-size: 20px;
   border-radius: 4px;
   border: none;
 }
 
-.purple {
+.gold {
   color: gold;
 }
 
 .logo {
-  width: 160px;
+  width: 100px;
 }
 
 .nav__container {
@@ -208,10 +208,7 @@ header {
 
 .header__img--wrapper {
   padding: 20px;
-
-  /* Added this after the tutorial to 
-  show it over the wave on larger screens */
-  z-index: 100;
+ z-index: 100;
 }
 
 .container {
