@@ -1,100 +1,127 @@
-//  API CONFIG //
-const API_KEY = "b7ae34c&search=star wars";
-let currentMovies = [];
-
-// FETCH MOVIES //
-async function fetchMovies(search = "star wars") {
-  const moviesContainer = document.querySelector("#features .movies");
-
-  moviesContainer.classList.add("movies__loading");
-
-  try {
-    const res = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${search}`);
-    const data = await res.json();
-
-    if (data.Search) {
-      // Map //
-      currentMovies = data.Search.map(movie => ({
-        title: movie.Title,
-        year: parseInt(movie.Year),
-        img: movie.Poster !== "N/A" ? movie.Poster : "https://via.placeholder.com/200x300",
-        price: (Math.random() * 20 + 10).toFixed(2), 
-        rating: (Math.random() * 2 + 3).toFixed(1)   
-      }));
-
-      renderMovies(currentMovies);
-    } else {
-      moviesContainer.innerHTML = "<p>No movies found.</p>";
-    }
-
-  } catch (error) {
-    moviesContainer.innerHTML = "<p>Error loading movies.</p>";
-  }
-
-  moviesContainer.classList.remove("movies__loading");
+// =======================
+// Mobile Menu Toggle
+// =======================
+function openMenu() {
+  const menu = document.querySelector('.menu__backdrop');
+  menu.style.display = 'block';
 }
 
-// ===== RENDER =====
-function renderMovies(movies) {
-  const moviesContainer = document.querySelector("#features .movies");
+function closeMenu() {
+  const menu = document.querySelector('.menu__backdrop');
+  menu.style.display = 'none';
+}
 
-  moviesContainer.innerHTML = movies.map(movie => `
-    <div class="movie">
+// =======================
+// Movies Data
+// =======================
+const moviesData = [
+  {
+    title: "Star wars: Episode I - The Phantom Menace",
+    img: "./assets/episode 1.jpg",
+    price: 14.95,
+    oldPrice: 22.95,
+    rating: 7.5
+  },
+  {
+    title: "Star Wars: Episode II - Attack of the Clones",
+    img: "./assets/episode 2.jpg",
+    price: 14.95,
+    oldPrice: 39.95,
+    rating: 6.6
+  },
+  {
+    title: "Star Wars: Episode III - Revenge of the Sith",
+    img: "./assets/episode 3.jpg",
+    price: 14.95,
+    oldPrice: 19.95,
+    rating: 7.5
+  },
+  {
+    title: "Star Wars: Episode IV - A New Hope",
+    img: "./assets/episode 4.jpg",
+    price: 14.95,
+    oldPrice: 19.95,
+    rating: 8.6
+  },
+  {
+    title: "Star Wars: Episode V - The Empire Strikes Back",
+    img: "./assets/episode 5.jpg",
+    price: 14.95,
+    oldPrice: 29.95,
+    rating: 8.7
+  },
+  {
+    title: "Star Wars: Episode VI - Return of the Jedi",
+    img: "./assets/episode 6.jpg",
+    price: 14.95,
+    oldPrice: 59.95,
+    rating: 8.3
+  },
+  {
+    title: "Rogue One: A Star Wars Story",
+    img: "./assets/rogue one.jpg",
+    price: 14.95,
+    oldPrice: 29.95,
+    rating: 7.8
+  },
+  {
+    title: "Solo: A Star Wars Story",
+    img: "./assets/solo.jpg",
+    price: 14.95,
+    oldPrice: 29.95,
+    rating: 7.0
+  }
+];
+
+// =======================
+// Display Movies
+// =======================
+const moviesContainer = document.getElementById('movies');
+
+function displayMovies(movies) {
+  moviesContainer.innerHTML = ''; // Clear container
+
+  movies.forEach(movie => {
+    const movieDiv = document.createElement('div');
+    movieDiv.classList.add('movie');
+
+    movieDiv.innerHTML = `
       <figure class="movie__img--wrapper">
         <img class="movie__img" src="${movie.img}" alt="${movie.title}">
       </figure>
       <div class="movie__title">${movie.title}</div>
-      <div class="movie__year">${movie.year}</div>
-      <div class="movie__price">$${movie.price}</div>
-      <div class="movie__rating">⭐ ${movie.rating}</div>
-    </div>
-  `).join("");
+      <div class="movie__price">
+        <span class="movie__price--normal">$${movie.oldPrice.toFixed(2)}</span> $${movie.price.toFixed(2)}
+      </div>
+    `;
+
+    moviesContainer.appendChild(movieDiv);
+  });
 }
 
-// ===== SORT =====
+// Initial display
+displayMovies(moviesData);
+
+// =======================
+// Filter / Sort Movies
+// =======================
 function filterMovies(event) {
   const value = event.target.value;
+  let sortedMovies = [...moviesData];
 
-  if (value === "LOW_TO_HIGH") {
-    currentMovies.sort((a, b) => a.price - b.price);
-
-  } else if (value === "HIGH_TO_LOW") {
-    currentMovies.sort((a, b) => b.price - a.price);
-
-  } else if (value === "RATING") {
-    currentMovies.sort((a, b) => b.rating - a.rating);
-
-  } else if (value === "NEWEST") {
-    currentMovies.sort((a, b) => b.year - a.year);
-
-  } else if (value === "OLDEST") {
-    currentMovies.sort((a, b) => a.year - b.year);
+  switch(value) {
+    case "LOW_TO_HIGH":
+      sortedMovies.sort((a, b) => a.price - b.price);
+      break;
+    case "HIGH_TO_LOW":
+      sortedMovies.sort((a, b) => b.price - a.price);
+      break;
+    case "RATING":
+      sortedMovies.sort((a, b) => b.rating - a.rating);
+      break;
+    default:
+      break;
   }
 
-  renderMovies(currentMovies);
+  displayMovies(sortedMovies);
 }
-
-// ===== MENU =====
-function openMenu() {
-  document.body.classList.add("menu--open");
-}
-
-function closeMenu() {
-  document.body.classList.remove("menu--open");
-}
-
-// ===== SEARCH =====
-document.addEventListener("DOMContentLoaded", () => {
-  fetchMovies(); 
-  const searchInput = document.querySelector(".topnav input");
-
-  let timeout;
-
-  searchInput.addEventListener("input", (e) => {
-    clearTimeout(timeout);
-
-    timeout = setTimeout(() => {
-      fetchMovies(e.target.value);
-    }, 500); 
-  });
-});

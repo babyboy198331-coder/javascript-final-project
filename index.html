@@ -1,23 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IMDb</title>
-
+  <title>IMDB</title>
   <link rel="stylesheet" href="style.css">
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></link>
+  <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
   <script src="index.js"></script>
 </head>
+
 <body>
   <section id="landing">
     <nav>
       <div class="nav__container">
-        <img src="./assets/imdb.jpg" alt="IMDb logo" class="nav__logo">
-
-      
-            </li>
+        <img class="logo" src="./assets/imdb.jpg" alt="">
+        <ul class="nav__links">
+          <li><a href="#" class="nav__link">Home</a></li>
+          <li><a href="#" class="nav__link nav__link--primary">Movies</a></li>
+        </ul>
+        <button class="btn__menu" onclick="openMenu()">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="menu__backdrop">
+          <button class="btn__menu btn__menu--close" onclick="closeMenu()">
+            <i class="fas fa-times"></i>
+          </button>
+          <ul class="menu__links">
+            <li class="menu__list"><a href="#" class="menu__link" onclick="closeMenu()">Home</a></li>
+            <li class="menu__list"><a href="#features" class="menu__link" onclick="closeMenu()">Movies</a></li>
           </ul>
         </div>
       </div>
@@ -26,215 +38,133 @@
     <header>
       <div class="header__container">
         <div class="header__description">
-          <h1>
-            IMDb is the world's most popular and authoritative source for movie,
-            TV, and celebrity content.
-          </h1>
-          <h2>
-            Find the right movie with <span class="yellow">IMDb</span>
-          </h2>
-<select id="filter" onchange="filterMovies(event)">
-  <option value="" disabled selected>Sort</option>
-  <option value="LOW_TO_HIGH">Price, Low to High</option>
-  <option value="HIGH_TO_LOW">Price, High to Low</option>
-  <option value="RATING">Rating</option>
-  <option value="NEWEST">Year, Newest to Oldest</option>
-  <option value="OLDEST">Year, Oldest to Newest</option>
-</select>
+          <h1>“The #1 Source for Movies, TV, and Celebrities.”</h1>
+          <h2>Find your favorite movies with <span class="gold">Library</span></h2>
           <a href="#features">
-            <div class="topnav">
-              <input type="text" placeholder="Search movies...">
-              <button class="btn">Browse Movies</button>
-            </div>
+            <button class="btn">Browse movies</button>
           </a>
         </div>
-
         <figure class="header__img--wrapper">
-          <img src="./assets/imdb2.jpg" alt="IMDb preview">
+          <img src="./assets/imdb2.jpg" alt="">
         </figure>
       </div>
     </header>
   </section>
 
   <main>
-    <!-- Highlights -->
     <section id="highlights">
       <div class="container">
         <div class="row">
-          <h2 class="section__title">
-            Why choose <span class="gold">IMDb</span>
-          </h2>
-
+          <h2 class="section__title">Why choose <span class="gold">IMDb?</span></h2>
           <div class="highlight__wrapper">
             <div class="highlight">
-              <div class="highlight__img">
-                <i class="fa-solid fa-circle-play"></i>
-              </div>
-              <h3 class="highlight__subtitle">Movies at Your Fingertips</h3>
-              <p class="highlight__para">
-                Get access to the movies you want to watch instantly.
-              </p>
+              <div class="highlight__img"><i class="fas fa-bolt"></i></div>
+              <h3 class="highlight__subtitle">Easy and Quick</h3>
+              <p class="highlight__para">Get access to the movie you purchased online instantly.</p>
             </div>
-
             <div class="highlight">
-              <div class="highlight__img">
-                <i class="fa-solid fa-film"></i>
-              </div>
-              <h3 class="highlight__subtitle">Huge Collection</h3>
-              <p class="highlight__para">
-                IMDb has a vast collection of movies, from the latest releases to
-                timeless classics, ensuring there's something for everyone.
-              </p>
+              <div class="highlight__img"><i class="fas fa-film"></i></div>
+              <h3 class="highlight__subtitle">10,000+ Movies</h3>
+              <p class="highlight__para">IMDb has movies in all your favourite categories.</p>
             </div>
-
             <div class="highlight">
-              <div class="highlight__img">
-                <i class="fa-regular fa-file-video"></i>
-              </div>
+              <div class="highlight__img"><i class="fas fa-tags"></i></div>
               <h3 class="highlight__subtitle">Affordable</h3>
-              <p class="highlight__para">
-                Enjoy a wide range of movies at affordable prices, making it easy
-                to find something great to watch without breaking the bank.
-              </p>
+              <p class="highlight__para">Get your hands on popular movies for as little as $15.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Features -->
     <section id="features">
       <div class="container">
         <div class="row">
           <div class="movies__header">
-            <h2 class="section__title movies__header--title">
-              ALL <span class="gold">Movies</span>
-            </h2>
-
+            <h2 class="section__title movies__header--title">ALL <span class="gold">Movies</span></h2>
             <select id="filter" onchange="filterMovies(event)">
               <option value="" disabled selected>Sort</option>
               <option value="LOW_TO_HIGH">Price, Low to High</option>
               <option value="HIGH_TO_LOW">Price, High to Low</option>
-              <option value="RATING">Rating</option>
+              
             </select>
           </div>
-
-          <div class="movies movies__loading">
-            <i class="fas fa-spinner fa-spin movies__loading--spinner"></i>
-          </div>
+          <div class="movies" id="movies"></div>
         </div>
       </div>
     </section>
 
-    <!-- Recent -->
     <section id="recent">
       <div class="container">
         <div class="row">
-          <h2 class="section__title">
-            Featured <span class="gold">Movies</span>
-          </h2>
-
+          <h2 class="section__title">Featured <span class="gold">Movies</span></h2>
           <div class="movies">
             <div class="movie">
               <figure class="movie__img--wrapper">
-                <img class="movie__img" src="./assets/episode 1.jpg" alt="Star Wars Episode I">
+                <img class="movie__img" src="./assets/episode 1.jpg" alt="">
               </figure>
-              <div class="movie__title">Star Wars: Episode I - The Phantom Menace</div>
-              <div class="movie__year">1999</div>
-              <div class="movie__price">
-                <span class="movie__price--normal">$29.95</span> $14.95
-              </div>
+              <div class="movie__title">Star wars: Episode I - The Phantom Menace</div>
+              <div class="movie__price"><span class="movie__price--normal">$22.95</span></div>
             </div>
-
             <div class="movie">
               <figure class="movie__img--wrapper">
-                <img class="movie__img" src="./assets/episode 2.jpg" alt="Star Wars Episode II">
+                <img class="movie__img" src="./assets/episode 2.jpg" alt="">
               </figure>
               <div class="movie__title">Star Wars: Episode II - Attack of the Clones</div>
-              <div class="movie__year">2002</div>
-              <div class="movie__price">
-                <span class="movie__price--normal">$29.95</span> $14.95
-              </div>
+              <div class="movie__price"><span class="movie__price--normal">$39.95</span></div>
             </div>
-
             <div class="movie">
               <figure class="movie__img--wrapper">
-                <img class="movie__img" src="./assets/episode 3.jpg" alt="Star Wars Episode III">
+                <img class="movie__img" src="./assets/episode 3.jpg" alt="">
               </figure>
               <div class="movie__title">Star Wars: Episode III - Revenge of the Sith</div>
-              <div class="movie__year">2005</div>
-              <div class="movie__price">
-                <span class="movie__price--normal">$29.95</span> $14.95
-              </div>
+              <div class="movie__price"><span class="movie__price--normal">$19.95</span></div>
             </div>
-
             <div class="movie">
               <figure class="movie__img--wrapper">
-                <img class="movie__img" src="./assets/episode 4.jpg" alt="Star Wars Episode IV">
+                <img class="movie__img" src="./assets/episode 4.jpg" alt="">
               </figure>
               <div class="movie__title">Star Wars: Episode IV - A New Hope</div>
-              <div class="movie__year">1977</div>
-              <div class="movie__price">
-                <span class="movie__price--normal">$29.95</span> $14.95
-              </div>
+              <div class="movie__price"><span class="movie__price--normal">$19.95</span></div>
             </div>
-
             <div class="movie">
               <figure class="movie__img--wrapper">
-                <img class="movie__img" src="./assets/episode 5.jpg" alt="Star Wars Episode V">
+                <img class="movie__img" src="./assets/episode 5.jpg" alt="">
               </figure>
               <div class="movie__title">Star Wars: Episode V - The Empire Strikes Back</div>
-              <div class="movie__year">1980</div>
-              <div class="movie__price">
-                <span class="movie__price--normal">$29.95</span> $14.95
-              </div>
+              <div class="movie__price"><span class="movie__price--normal">$29.95</span></div>
             </div>
-
             <div class="movie">
               <figure class="movie__img--wrapper">
-                <img class="movie__img" src="./assets/return of the jedi.jpg" alt="Return of the Jedi">
+                <img class="movie__img" src="./assets/episode 6.jpg" alt="">
               </figure>
               <div class="movie__title">Star Wars: Episode VI - Return of the Jedi</div>
-              <div class="movie__year">1983</div>
-              <div class="movie__price">
-                <span class="movie__price--normal">$29.95</span> $14.95
-              </div>
+              <div class="movie__price"><span class="movie__price--normal">$19.95</span> </div>
             </div>
-
             <div class="movie">
               <figure class="movie__img--wrapper">
-                <img class="movie__img" src="./assets/rogue one.jpg" alt="Rogue One">
+                <img class="movie__img" src="./assets/rogue one.jpg" alt="">
               </figure>
               <div class="movie__title">Rogue One: A Star Wars Story</div>
-              <div class="movie__year">2016</div>
-              <div class="movie__price">
-                <span class="movie__price--normal">$29.95</span> $14.95
-              </div>
+              <div class="movie__price"><span class="movie__price--normal">$29.95</span></div>
             </div>
-
             <div class="movie">
               <figure class="movie__img--wrapper">
-                <img class="movie__img" src="./assets/solo.jpg" alt="Solo">
+                <img class="movie__img" src="./assets/solo.jpg" alt="">
               </figure>
               <div class="movie__title">Solo: A Star Wars Story</div>
-              <div class="movie__year">2018</div>
-              <div class="movie__price">
-                <span class="movie__price--normal">$29.95</span> $14.95
-              </div>
+              <div class="book__price"><span class="book__price--normal">$29.95</span></div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Explore -->
     <section id="explore">
       <div class="container">
         <div class="row row__column">
-          <h2>Explore More <span class="gold">Movies</span></h2>
-          <a href="#features">
-            <button class="btn">Browse Movies</button>
-          </a>
+          <h2>Explore more <span class="gold">Movies</span></h2>
+          <a href="#features"><button class="btn">Browse Movies</button></a>
         </div>
       </div>
     </section>
@@ -245,22 +175,18 @@
       <div class="row row__column">
         <a href="#">
           <figure class="footer__logo">
-            <img src="assets/imdb3.webp" alt="IMDb logo">
+            <img src="./assets/imdb3.webp" class="footer__logo--img" alt="">
           </figure>
         </a>
-
         <div class="footer__list">
           <a href="#" class="footer__link">Home</a>
           <a class="footer__link no-cursor">About</a>
           <a href="#features" class="footer__link">Movies</a>
-          <a class="footer__link no-cursor">Contact</a>
         </div>
-
-        <div class="footer__copyright">
-          Copyright &copy; 2026 IMDb
-        </div>
+        <div class="footer__copyright">Copyright &copy; 2026 IMDb</div>
       </div>
     </div>
   </footer>
 </body>
+
 </html>
