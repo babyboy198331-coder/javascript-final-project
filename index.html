@@ -40,8 +40,15 @@
         <div class="header__description">
           <h1>“The #1 Source for Movies, TV, and Celebrities.”</h1>
           <h2>Find your favorite movies with <span class="gold">Library</span></h2>
+         
           <a href="#features">
             <button class="btn">Browse movies</button>
+         <div class="search-box">
+  <input type="text" placeholder="Search movies...">
+  <button>
+    <i class="fas fa-search"></i>
+  </button>
+</div>
           </a>
         </div>
         <figure class="header__img--wrapper">
@@ -82,6 +89,12 @@
         <div class="row">
           <div class="movies__header">
             <h2 class="section__title movies__header--title">ALL <span class="gold">Movies</span></h2>
+             <div class="search-box">
+  <input type="text" placeholder="Search movies...">
+  <button>
+    <i class="fas fa-search"></i>
+  </button>
+</div>
             <select id="filter" onchange="filterMovies(event)">
               <option value="" disabled selected>Sort</option>
               <option value="LOW_TO_HIGH">Price, Low to High</option>
