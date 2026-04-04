@@ -48,7 +48,10 @@
           <h1>IMDb is the world's most popular and authoritative source for movie, TV and celebrity content.</h1>
           <h2>Find the right movie with <span class="yellow">IMDB</span></h2>
           <a href="#features">
-            <button class="btn">Browse Movies</button>
+          <div class="topnav">
+  <input type="text" placeholder="Search movies...">
+  <button class="btn">Browse Movies</button>
+</div>
           </a>
         </div>
         <figure class="header__img--wrapper">
@@ -62,7 +65,7 @@
       <div class="container">
         <div class="row">
           <h2 class="section__title">
-            Why choose <span class="yellow">IMDB</span>
+            Why choose <span class="gold">IMDB</span>
           </h2>
           <div class="highlight__wrapper">
             <div class="highlight">
@@ -106,11 +109,11 @@
     <section id="features">
       <div class="container">
         <div class="row">
-          <div class="books__header">
-          <h2 class="section__title books__header--title">
+          <div class="movies__header">
+          <h2 class="section__title movies__header--title">
             ALL <span class="purple">Movies</span>
           </h2>
-          <select id="filter" onchange="filterBooks(event)">
+          <select id="filter" onchange="filterMovies(event)">
             <option value="" disabled selected>Sort</option>
             <option value="LOW_TO_HIGH">Price, Low to High</option>
             <option value="HIGH_TO_LOW">Price, High to Low</option>
@@ -277,7 +280,7 @@
     <section id="explore">
       <div class="container">
         <div class="row row__column">
-          <h2>Explore more <span class="purple">Movies</span></h2>
+          <h2>Explore more <span class="gold">Movies</span></h2>
           <a href="#features">
             <button class="btn">Browse Movies</button>
           </a>
