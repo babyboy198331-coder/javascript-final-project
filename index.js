@@ -1,36 +1,69 @@
 const API_URL = "https://www.omdbapi.com/?apikey=b7ae34c&s=s";
 
-async function fetchData() {
+// API CONFIG //
+const API_KEY = "b7ae34c";
+const moviesContainer = document.getElementById("movies");
+const searchInput = document.getElementById("searchInput");
+const filterSelect = document.getElementById("filter");
+
+// GET USER INPUT // 
+function getUserInput() {
+  const input = searchInput.value.trim();
+
+  if (!input) {
+    alert("Please enter a movie name");
+    return null;
+  }
+
+  return input;
+}
+
+// FETCH MOVIES FROM API //
+async function fetchMovies(query) {
   try {
-    const response = await fetch(API_URL);
+    const response = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${query}`);
     const data = await response.json();
 
-    console.log(data); 
+    if (data.Search) {
+      displayAPIMovies(data.Search);
+    } else {
+      moviesContainer.innerHTML = "<p>No results found</p>";
+    }
 
-    displayData(data);
   } catch (error) {
-    console.error("Error:", error);
+    console.error("Error fetching movies:", error);
   }
 }
 
-function displayData(movies) {
-  const container = document.getElementById("movies");
-  container.innerHTML = "";
-
-  items.forEach(movies => {
-    const div = document.createElement("div");
-    div.classList.add("card");
-
-     div.innerHTML = `
-      <h3>${movie.title}</h3>
-      <p>${movie.description}</p>
-    `;
-
-    container.appendChild(div);
-  });
+// DISPLAY API MOVIEs //
+function displayAPIMovies(movies) {
+  moviesContainer.innerHTML = movies.map(movie => `
+    <div class="card">
+      <img src="${movie.Poster}" alt="${movie.Title}">
+      <h3>${movie.Title}</h3>
+      <p>${movie.Year}</p>
+    </div>
+  `).join("");
 }
 
-fetchData();
+// HANDLE SEARCH //
+function handleSearch() {
+  const query = getUserInput();
+
+  if (!query) return;
+
+  fetchMovies(query);
+}
+
+// ENTER KEY SUPPORT //
+searchInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    handleSearch();
+  }
+});
+
+
+// LOCAL MOVIE STORE DATA //
 const moviesData = [
   { title: "Episode I - The Phantom Menace", price: 19.95, img: "./assets/episode 1.jpg" },
   { title: "Episode II - Attack of the Clones", price: 39.95, img: "./assets/episode 2.jpg" },
@@ -39,34 +72,38 @@ const moviesData = [
   { title: "Episode V - The Empire Strikes Back", price: 29.95, img: "./assets/episode 5.jpg" }
 ];
 
-const moviesContainer = document.getElementById('movies');
-const filterSelect = document.getElementById('filter');
-
-function displayMovies(movies) {
+// DISPLAY STORE MOVIEs //
+function displayStoreMovies(movies) {
   moviesContainer.innerHTML = movies.map(movie => `
     <div class="movie">
-      <figure class="movie__img--wrapper">
-        <img class="movie__img" src="${movie.img}" alt="${movie.title}">
-      </figure>
-      <div class="movie__title">${movie.title}</div>
-      <div class="movie__price">$${movie.price.toFixed(2)}</div>
+      <img src="${movie.img}" alt="${movie.title}">
+      <h3>${movie.title}</h3>
+      <p>$${movie.price.toFixed(2)}</p>
     </div>
-  `).join('');
+  `).join("");
 }
 
-displayMovies(moviesData);
+// FILTER / SORT MOVIES //
 
-function filterMovies(event) {
-  const value = event.target.value;
-  let sortedMovies = [...moviesData];
+function filterMovies(e) {
+  const value = e.target.value;
+  let sorted = [...moviesData];
 
   if (value === "LOW_TO_HIGH") {
-    sortedMovies.sort((a, b) => a.price - b.price); // low to high
+    sorted.sort((a, b) => a.price - b.price);
   } else if (value === "HIGH_TO_LOW") {
-    sortedMovies.sort((a, b) => b.price - a.price); // high to low
+    sorted.sort((a, b) => b.price - a.price);
   }
 
-  displayMovies(sortedMovies);
+  displayStoreMovies(sorted);
 }
 
-filterSelect.addEventListener('change', filterMovies);
+
+
+// EVENT LISTENERS //
+filterSelect.addEventListener("change", filterMovies);
+
+
+
+// INITIAL LOAD //
+displayStoreMovies(moviesData);
