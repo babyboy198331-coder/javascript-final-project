@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Library</title>
+  <title>IMDb</title>
 
   <link rel="stylesheet" href="style.css">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></link>
@@ -52,7 +52,14 @@
           <h2>
             Find the right movie with <span class="yellow">IMDb</span>
           </h2>
-
+<select id="filter" onchange="filterMovies(event)">
+  <option value="" disabled selected>Sort</option>
+  <option value="LOW_TO_HIGH">Price, Low to High</option>
+  <option value="HIGH_TO_LOW">Price, High to Low</option>
+  <option value="RATING">Rating</option>
+  <option value="NEWEST">Year, Newest to Oldest</option>
+  <option value="OLDEST">Year, Oldest to Newest</option>
+</select>
           <a href="#features">
             <div class="topnav">
               <input type="text" placeholder="Search movies...">
