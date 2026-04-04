@@ -351,11 +351,6 @@ FEATURES
   cursor: not-allowed;
 }
 
-.movie__ratings {
-  margin-bottom: 8px;
-  color: #fabf2a;
-}
-
 .movie__price--normal {
   text-decoration: line-through;
   padding-right: 6px;
