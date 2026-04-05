@@ -236,7 +236,7 @@ header .search-box {
 }
 
 .highlight__img i {
-  font-size: 8px;
+  font-size: 32px;
   color: var(--gold);
   margin-bottom: 8px;
 }
