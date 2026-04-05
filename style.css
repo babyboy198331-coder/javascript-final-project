@@ -147,6 +147,22 @@ body {
   opacity: 1;
 }
 
+/* LANDING PAGE CENTERING & LOGO SIZE */
+#landing .header__container {
+  display: flex;
+  flex-direction: column;      /* stack text and image */
+  align-items: center;         /* center horizontally */
+  justify-content: center;     /* center vertically */
+  text-align: center;          /* center all text */
+  padding: 50px 20px;
+}
+
+#landing .logo {
+  width: 150px;    /* smaller logo */
+  height: auto;
+  margin-bottom: 20px;
+}
+
 /* LANDING IMAGE */
 .header__img--wrapper {
   max-width: 400px;
@@ -165,6 +181,93 @@ body {
 
 .header__img--wrapper img:hover {
   transform: scale(1.05);
+}
+
+/* FEATURES SEARCH BOX CENTERED */
+#features .search-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+#features .search-box input {
+  padding: 10px 15px;
+  border-radius: 5px 0 0 5px;
+  border: 1px solid #ccc;
+  width: 250px;
+  max-width: 100%;
+  font-size: 16px;
+}
+
+#features .search-box button {
+  padding: 10px 15px;
+  border-radius: 0 5px 5px 0;
+  border: 1px solid #ccc;
+  background-color: gold;
+  color: #000;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#features .search-box button:hover {
+  background-color: #ffcc00;
+}
+
+/* HIGHLIGHT WRAPPER */
+.highlight__wrapper {
+  display: flex;
+  justify-content: center;      /* center horizontally */
+  gap: 20px;                    /* space between highlights */
+  flex-wrap: wrap;              /* wrap on smaller screens */
+  margin-top: 20px;
+}
+
+.highlight {
+  background: #1c1c1c;
+  border-radius: 12px;
+  padding: 20px;
+  width: 200px;                 /* fixed width for uniformity */
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.highlight:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4); /* subtle golden glow */
+}
+
+.highlight__img {
+  font-size: 32px;
+  color: gold;
+  margin-bottom: 12px;
+}
+
+.highlight__subtitle {
+  font-size: 16px;
+  color: gold;
+  margin-bottom: 8px;
+}
+
+.highlight__para {
+  font-size: 14px;
+  color: #ccc;
+  line-height: 1.4;
+}
+
+/* Responsive adjustments for highlights */
+@media (max-width: 768px) {
+  .highlight {
+    width: 45%;                  /* two per row */
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .highlight {
+    width: 100%;                 /* full width on small screens */
+  }
 }
 
 /* FOOTER */
