@@ -1,69 +1,16 @@
 const API_URL = "https://www.omdbapi.com/?apikey=b7ae34c&s=s";
 
-// API CONFIG //
+// ==========================
+// CONFIG
+// ==========================
 const API_KEY = "b7ae34c";
 const moviesContainer = document.getElementById("movies");
 const searchInput = document.getElementById("searchInput");
 const filterSelect = document.getElementById("filter");
 
-// GET USER INPUT // 
-function getUserInput() {
-  const input = searchInput.value.trim();
-
-  if (!input) {
-    alert("Please enter a movie name");
-    return null;
-  }
-
-  return input;
-}
-
-// FETCH MOVIES FROM API //
-async function fetchMovies(query) {
-  try {
-    const response = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${query}`);
-    const data = await response.json();
-
-    if (data.Search) {
-      displayAPIMovies(data.Search);
-    } else {
-      moviesContainer.innerHTML = "<p>No results found</p>";
-    }
-
-  } catch (error) {
-    console.error("Error fetching movies:", error);
-  }
-}
-
-// DISPLAY API MOVIEs //
-function displayAPIMovies(movies) {
-  moviesContainer.innerHTML = movies.map(movie => `
-    <div class="card">
-      <img src="${movie.Poster}" alt="${movie.Title}">
-      <h3>${movie.Title}</h3>
-      <p>${movie.Year}</p>
-    </div>
-  `).join("");
-}
-
-// HANDLE SEARCH //
-function handleSearch() {
-  const query = getUserInput();
-
-  if (!query) return;
-
-  fetchMovies(query);
-}
-
-// ENTER KEY SUPPORT //
-searchInput.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") {
-    handleSearch();
-  }
-});
-
-
-// LOCAL MOVIE STORE DATA //
+// ==========================
+// LOCAL STORE MOVIES
+// ==========================
 const moviesData = [
   { title: "Episode I - The Phantom Menace", price: 19.95, img: "./assets/episode 1.jpg" },
   { title: "Episode II - Attack of the Clones", price: 39.95, img: "./assets/episode 2.jpg" },
@@ -72,19 +19,61 @@ const moviesData = [
   { title: "Episode V - The Empire Strikes Back", price: 29.95, img: "./assets/episode 5.jpg" }
 ];
 
-// DISPLAY STORE MOVIEs //
-function displayStoreMovies(movies) {
+// ==========================
+// HELPER FUNCTIONS
+// ==========================
+
+// Display movies in container
+function displayMovies(movies, isAPI = false) {
+  if (!movies || movies.length === 0) {
+    moviesContainer.innerHTML = "<p>No movies to display</p>";
+    return;
+  }
+
   moviesContainer.innerHTML = movies.map(movie => `
-    <div class="movie">
-      <img src="${movie.img}" alt="${movie.title}">
-      <h3>${movie.title}</h3>
-      <p>$${movie.price.toFixed(2)}</p>
+    <div class="${isAPI ? "card" : "movie"}">
+      <img src="${isAPI ? movie.Poster : movie.img}" alt="${isAPI ? movie.Title : movie.title}">
+      <h3>${isAPI ? movie.Title : movie.title}</h3>
+      <p>${isAPI ? movie.Year : `$${movie.price.toFixed(2)}`}</p>
     </div>
   `).join("");
 }
 
-// FILTER / SORT MOVIES //
+// Get search input value
+function getUserInput() {
+  const query = searchInput.value.trim();
+  if (!query) {
+    alert("Please enter a movie name");
+    return null;
+  }
+  return query;
+}
 
+// Fetch movies from OMDb API
+async function fetchMovies(query) {
+  try {
+    const response = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${query}`);
+    const data = await response.json();
+
+    if (data.Search) {
+      displayMovies(data.Search, true);
+    } else {
+      moviesContainer.innerHTML = "<p>No results found</p>";
+    }
+  } catch (error) {
+    console.error("Error fetching movies:", error);
+    moviesContainer.innerHTML = "<p>Error fetching movies</p>";
+  }
+}
+
+// Handle search action
+function handleSearch() {
+  const query = getUserInput();
+  if (!query) return;
+  fetchMovies(query);
+}
+
+// Filter / sort local store movies
 function filterMovies(e) {
   const value = e.target.value;
   let sorted = [...moviesData];
@@ -95,15 +84,19 @@ function filterMovies(e) {
     sorted.sort((a, b) => b.price - a.price);
   }
 
-  displayStoreMovies(sorted);
+  displayMovies(sorted);
 }
 
+// ==========================
+// EVENT LISTENERS
+// ==========================
+searchInput.addEventListener("keypress", e => {
+  if (e.key === "Enter") handleSearch();
+});
 
-
-// EVENT LISTENERS //
 filterSelect.addEventListener("change", filterMovies);
 
-
-
-// INITIAL LOAD //
-displayStoreMovies(moviesData);
+// ==========================
+// INITIAL LOAD
+// ==========================
+displayMovies(moviesData);
