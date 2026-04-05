@@ -56,10 +56,10 @@ body {
 #filter {
   background-color: gold;     
   color: black;               
-  border: 24px solid white;    
-  border-radius: 24px;        
-  padding: 24px 32px;         
-  font-size: 2rem;           
+  border: 8px solid white;    
+  border-radius: 8px;        
+  padding: 12px 16px;         
+  font-size: rem;           
   font-weight: bold;         
   cursor: pointer;            
   transition: all 0.3s ease;  
