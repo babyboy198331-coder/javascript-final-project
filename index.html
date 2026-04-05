@@ -12,21 +12,16 @@
 </head>
 
 <body>
+  
   <section id="landing">
     <nav>
       <div class="nav__container">
         <img class="logo" src="./assets/imdb.jpg" alt="">
-        <button class="btn__menu" onclick="openMenu()">
-          <i class="fas fa-bars"></i>
-        </button>
+        <button class="btn__menu" onclick="openMenu()"></button>
+
         <div class="menu__backdrop">
-          <button class="btn__menu btn__menu--close" onclick="closeMenu()">
-            <i class="fas fa-times"></i>
-          </button>
-          <ul class="menu__links">
-            <li class="menu__list"><a href="#" class="menu__link" onclick="closeMenu()">Home</a></li>
-            <li class="menu__list"><a href="#features" class="menu__link" onclick="closeMenu()">Movies</a></li>
-          </ul>
+          <button class="btn__menu btn__menu--close" onclick="closeMenu()"></button>
+          <ul class="menu__links"></ul>
         </div>
       </div>
     </nav>
@@ -36,17 +31,20 @@
         <div class="header__description">
           <h1>“The #1 Source for Movies, TV, and Celebrities.”</h1>
           <h2>Find your favorite movies with <span class="gold">IMDb</span></h2>
-         
+
           <a href="#features">
             <button class="btn">Browse movies</button>
-         <div class="search-box">
-  <input type="text" placeholder="Search movies...">
-  <button>
-    <i class="fas fa-search"></i>
-  </button>
-</div>
           </a>
+
+          <!-- Header Search Box -->
+          <div class="search-box">
+            <input type="text" id="headerSearch" placeholder="Search movies...">
+            <button onclick="handleSearch()">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
         </div>
+
         <figure class="header__img--wrapper">
           <img src="./assets/imdb2.jpg" alt="">
         </figure>
@@ -85,17 +83,18 @@
         <div class="row">
           <div class="movies__header">
             <h2 class="section__title movies__header--title">ALL <span class="gold">Movies</span></h2>
-             <div class="search-box">
- <input type="text" id="searchInput" placeholder="Search movies...">
-  <button><button onclick="handleSearch()"></button>
-    <i class="fas fa-search"></i>
-  </button>
-</div>
+
+            <div class="search-box">
+              <input type="text" id="searchInput" placeholder="Search movies...">
+              <button onclick="handleSearch()">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+
             <select id="filter" onchange="filterMovies(event)">
               <option value="" disabled selected>Sort</option>
               <option value="LOW_TO_HIGH">Price, Low to High</option>
               <option value="HIGH_TO_LOW">Price, High to Low</option>
-              
             </select>
           </div>
           <div class="movies" id="movies"></div>
@@ -108,6 +107,7 @@
         <div class="row">
           <h2 class="section__title">Featured <span class="gold">Movies</span></h2>
           <div class="movies">
+            
             <div class="movie">
               <figure class="movie__img--wrapper">
                 <img class="movie__img" src="./assets/episode 1.jpg" alt="">
@@ -115,6 +115,7 @@
               <div class="movie__title">Star wars: Episode I - The Phantom Menace</div>
               <div class="movie__price"><span class="movie__price--normal">$22.95</span>19.95</div>
             </div>
+
             <div class="movie">
               <figure class="movie__img--wrapper">
                 <img class="movie__img" src="./assets/episode 2.jpg" alt="">
@@ -122,6 +123,7 @@
               <div class="movie__title">Star Wars: Episode II - Attack of the Clones</div>
               <div class="movie__price"><span class="movie__price--normal">$39.95</span>19.95</div>
             </div>
+
             <div class="movie">
               <figure class="movie__img--wrapper">
                 <img class="movie__img" src="./assets/episode 3.jpg" alt="">
@@ -129,6 +131,7 @@
               <div class="movie__title">Star Wars: Episode III - Revenge of the Sith</div>
               <div class="movie__price"><span class="movie__price--normal">$19.95</span>9.95</div>
             </div>
+
             <div class="movie">
               <figure class="movie__img--wrapper">
                 <img class="movie__img" src="./assets/episode 4.jpg" alt="">
@@ -136,6 +139,7 @@
               <div class="movie__title">Star Wars: Episode IV - A New Hope</div>
               <div class="movie__price"><span class="movie__price--normal">$19.95</span>14.95</div>
             </div>
+
             <div class="movie">
               <figure class="movie__img--wrapper">
                 <img class="movie__img" src="./assets/episode 5.jpg" alt="">
@@ -143,6 +147,7 @@
               <div class="movie__title">Star Wars: Episode V - The Empire Strikes Back</div>
               <div class="movie__price"><span class="movie__price--normal">$29.95</span>19.95</div>
             </div>
+
             <div class="movie">
               <figure class="movie__img--wrapper">
                 <img class="movie__img" src="./assets/episode 6.jpg" alt="">
@@ -150,6 +155,7 @@
               <div class="movie__title">Star Wars: Episode VI - Return of the Jedi</div>
               <div class="movie__price"><span class="movie__price--normal">$19.95</span>9.95</div>
             </div>
+
             <div class="movie">
               <figure class="movie__img--wrapper">
                 <img class="movie__img" src="./assets/rogue one.jpg" alt="">
@@ -157,12 +163,13 @@
               <div class="movie__title">Rogue One: A Star Wars Story</div>
               <div class="movie__price"><span class="movie__price--normal">$29.95</span>19.95</div>
             </div>
+
             <div class="movie">
               <figure class="movie__img--wrapper">
                 <img class="movie__img" src="./assets/solo.jpg" alt="">
               </figure>
               <div class="movie__title">Solo: A Star Wars Story</div>
-              <div class="book__price"><span class="book__price--normal">$29.95</span>14.95</div>
+              <div class="movie__price"><span class="movie__price--normal">$29.95</span>14.95</div>
             </div>
           </div>
         </div>
