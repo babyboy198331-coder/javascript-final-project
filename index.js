@@ -31,7 +31,7 @@ function displayMovies(movies, isAPI = false) {
   }
 
   moviesContainer.innerHTML = movies.map(movie => `
-    <div class="${isAPI ? "card" : "movie"}">
+    <div class="${isAPI ? "movie" : "movie"}">
       <img src="${isAPI ? movie.Poster : movie.img}" alt="${isAPI ? movie.Title : movie.title}">
       <h3>${isAPI ? movie.Title : movie.title}</h3>
       <p>${isAPI ? movie.Year : `$${movie.price.toFixed(2)}`}</p>
