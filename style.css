@@ -150,15 +150,15 @@ body {
 /* LANDING PAGE CENTERING & LOGO SIZE */
 #landing .header__container {
   display: flex;
-  flex-direction: column;      /* stack text and image */
-  align-items: center;         /* center horizontally */
-  justify-content: center;     /* center vertically */
-  text-align: center;          /* center all text */
+  flex-direction: column;      
+  align-items: center;         
+  justify-content: center;     
+  text-align: center;         
   padding: 50px 20px;
 }
 
 #landing .logo {
-  width: 150px;    /* smaller logo */
+  width: 150px;    
   height: auto;
   margin-bottom: 20px;
 }
@@ -175,7 +175,7 @@ body {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
   transition: transform 0.3s ease;
 }
 
@@ -217,9 +217,9 @@ body {
 /* HIGHLIGHT WRAPPER */
 .highlight__wrapper {
   display: flex;
-  justify-content: center;      /* center horizontally */
-  gap: 20px;                    /* space between highlights */
-  flex-wrap: wrap;              /* wrap on smaller screens */
+  justify-content: center;     
+  gap: 20px;                    
+  flex-wrap: wrap;              
   margin-top: 20px;
 }
 
@@ -227,7 +227,7 @@ body {
   background: #1c1c1c;
   border-radius: 12px;
   padding: 20px;
-  width: 200px;                 /* fixed width for uniformity */
+  width: 200px;                 
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
@@ -235,7 +235,7 @@ body {
 
 .highlight:hover {
   transform: translateY(-5px) scale(1.03);
-  box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4); /* subtle golden glow */
+  box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4); 
 }
 
 .highlight__img {
@@ -259,14 +259,14 @@ body {
 /* Responsive adjustments for highlights */
 @media (max-width: 768px) {
   .highlight {
-    width: 45%;                  /* two per row */
+    width: 45%;                  
     margin-bottom: 15px;
   }
 }
 
 @media (max-width: 480px) {
   .highlight {
-    width: 100%;                 /* full width on small screens */
+    width: 100%;                 
   }
 }
 
@@ -318,7 +318,7 @@ footer a:hover {
   }
 
   .movies {
-   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 }
 
