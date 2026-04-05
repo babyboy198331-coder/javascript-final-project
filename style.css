@@ -138,15 +138,15 @@ header {
 }
 
 .header__description h1 {
-  font-size: 12px;
+  font-size: 24px;
   margin-bottom: 12px;
   color: var(--gold);
   font-weight: bold;
 }
 
 .header__description h2 {
-  font-size: 8px;
-  margin-bottom: 8px;
+  font-size: 24px;
+  margin-bottom: 24px;
 }
 
 .header__description .gold {
@@ -154,7 +154,7 @@ header {
 }
 
 .btn {
-  padding: 12px 12px;
+  padding: 10px 10px;
   background-color: var(--gold);
   color: var(--dark);
   border: none;
@@ -190,11 +190,11 @@ header .search-box {
 }
 
 .search-box input {
-  padding: 2px 2px;
+  padding: 8px 12px;
   border: none;
   outline: none;
   flex: 1;
-  font-size: 2px;
+  font-size: 24px;
 }
 
 .search-box input::placeholder {
@@ -204,7 +204,7 @@ header .search-box {
 .search-box button {
   background-color: var(--gold);
   border: none;
-  padding: 0 2px;
+  padding: 0 28px;
   cursor: pointer;
   transition: 0.3s;
   color: var(--dark);
@@ -242,15 +242,15 @@ header .search-box {
 }
 
 .highlight__subtitle {
-  font-size: 10px;
-  margin-bottom: 8px;
+  font-size: 24px;
+  margin-bottom: 24px;
 }
 
 .movies {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 8px;
-  margin-top: 1rem; /* extra spacing from search bar */
+  margin-top: 24px; 
 }
 
 .movie {
@@ -280,7 +280,7 @@ header .search-box {
 .movie__title {
   padding: 16px 24px;
   font-weight: bold;
-  font-size: 12px;
+  font-size: 24px;
   transition: color 0.3s;
 }
 
